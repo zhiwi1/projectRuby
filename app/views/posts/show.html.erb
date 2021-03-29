@@ -1,0 +1,25 @@
+
+
+    <li><%= link_to "Edit", edit_post_path(@post) %></li>
+    <li><%= link_to "Destroy", post_path(@post),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></li>
+<section class="section task">
+
+  <div class="container">
+  <h1><%=@post.title%></h1>
+  <p><%=@post.content%></p>
+  <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
+    </div>
+  </section>
+<section class="section comments">
+  <div class="container">
+    <h1 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Comments</h1>
+    <%= render @post.comments %>
+    <div class="comment-form">
+      <hr />
+      <h3 class="subtitle is-3">Leave a reply</h3>
+      <%= render 'comments/form' %>
+    </div>
+  </div>
+</section>
