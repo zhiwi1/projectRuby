@@ -5,6 +5,8 @@
     <%= f.input :content %>
     <%= f.range_field :hard, :in => 1..10, :step => 1 %>
     <%= f.input :tag_ids, as: :select , collection: Tag.order(:name), label_method: :name, input_html: {multiple: true}%>
+    <%= f.input :answer1 %>
+    <%= f.input :answer2 %>
     <%= f.submit "Create", class: 'btn btn-lg btn-primary float-right' %>
   <% end %>
 </div>
