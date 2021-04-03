@@ -20,7 +20,4 @@ class Post < ApplicationRecord
       Tag.where(name: n.strip).first_or_create!
     end
   end
-=begin
-  dfddfd
-=end
 end
