@@ -1,3 +1,71 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.card{
+  margin-top:40px;
+  width: 100%;
+}
+.container{
+  max-width: 80%;
+}
+.s{
+  max-width: 100%;
+}
+
+.usertools{
+  display: flex;
+  width: 100%;
+  border-bottom-color: #008a77;
+}
+.profile{
+  width: 40%;
+  border-style: solid;
+  border-top: white;
+  border-left: white;
+}
+.logout{
+  width: 21%;
+  border-style: solid;
+  border-top: white;
+  border-left: white;
+}
+.emptyplace{
+  width: 8%;
+  border-style: solid;
+  border-top: white;
+  border-left: white;
+  border-right: white;
+}
+.s{
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+  padding-left: 120px;
+}
+.flexcolumn{
+  position: fixed;
+  border-color: #008a77;
+  border-style: solid;
+  width: 30%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+
+}
+.text{
+  display: flex;
+  justify-content: center;
+}
+.bestinsolution{
+  border-color: #008a77;
+  border-style: solid;
+  border-left: white;
+  border-right: white;
+  border-bottom: white;
+  width: 100%;
+  height: 30%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
