@@ -1,59 +1,58 @@
-<div class="usertools">
-  <div class="emptyplace" ></div>
-  <div class="profile">
-    <a href="" alt="" ><%= link_to "profile",person_path(:id => current_user.id) %></a>
-  </div>
-  <div class="logout" >
-    <a href="" alt="" ><%= link_to "logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></a>
-    <a href="/persons" alt="" >Profiles</a>
-  </div>
-  <div class="asidetop" >
-    <div class="flexcolumn">
-      <p class="text" >Топ 3 решалы</p>
-      <div class="bestinsolution">
-        <p>email:</p>
-        <p>number of solved tasks:</p>
-      </div>
-      <div class="bestinsolution">
-        <p>email:</p>
-        <p>number of solved tasks:</p>
-      </div>
-      <div class="bestinsolution">
-        <p>email:</p>
-        <p>number of solved tasks:</p>
-      </div>
-    </div>
+ <div class="usertools">
+   <div class="emptyplace" ></div>
+   <div class="profile">
+     <a href="" alt="" ><%= link_to "profile",person_path(:id => current_user.id) %></a>
+   </div>
+   <div class="logout" >
+     <a href="" alt="" ><%= link_to "logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></a>
+   </div>
+   <div class="allprofiles" >
+     <a href="/persons" alt="" >all profiles</a>
+   </div>
+   <div class="asidetop" >
+     <div class="flexcolumn">
+       <div class="bestinsolution">
+         <p>email:</p>
+         <p>number of solved tasks:</p>
+       </div>
+       <div class="bestinsolution">
+         <p>email:</p>
+         <p>number of solved tasks:</p>
+       </div>
+       <div class="bestinsolution">
+         <p>email:</p>
+         <p>number of solved tasks:</p>
+       </div>
+     </div>
 
-  </div>
-</div>
-<div class="s" style=" padding-bottom: 20px;">
-  <div class="container" >
-    <% @posts.each do |post| %>
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <% if post.answers.exists?(:user_id => current_user.id,:post_id => post.id) %>
-                <p class="title is-4"> <%= link_to post.title,post_path(post) %></p>
-                <% else %>
-                <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
-                <% end %>
-            </div>
-          </div>
-          <div class="content">
-            <%= truncate(post.content, length: 50) %>
-          </div>
-          <div class="tags-count">
-            <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
-          </div>
-          <div>
-          <p><%= post.hard%></p>
-          </div>
-          <div class="comment-count">
-            <span class="tag is-rounded"><%= post.comments.count %> comments</span>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+   </div>
+ </div>
+ <div class="s" style=" padding-bottom: 20px;">
+   <div class="container" >
+     <% @posts.each do |post| %>
+       <div class="card">
+         <div class="card-content">
+           <div class="media">
+             <div class="media-content">
+               <% if post.answers.exists?(:user_id => current_user.id,:post_id => post.id) %>
+                 <p class="title is-4"> <%= link_to post.title,post_path(post) %></p>
+               <% else %>
+                 <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
+               <% end %>
+             </div>
+           </div>
+           <div class="content">
+             <%= truncate(post.content, length: 50) %>
+           </div>
+           <div class="tags-count">
+             <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
+           </div>
+           <div class="comment-count">
+             <span class="tag is-rounded"><%= post.comments.count %> comments</span>
+           </div>
+         </div>
+       </div>
+     <% end %>
+   </div>
+ </div>
+

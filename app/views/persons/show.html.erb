@@ -1,5 +1,12 @@
-Logged in as <strong><%= @person.email %></strong>.
-<div><%= @person.count_of_solve %></div>
-<% @person_posts.each do |post| %>
-  <%= link_to post.title, post_path(post) %>
-<%end %>
+<div class="profile_container">
+  <div class="logged" >
+    <p> Logged in as <strong><%= @person.email %></strong>.</p>
+  </div>
+  <div class="allTasks" >
+    <% @person_posts.each do |post| %>
+      <%= link_to post.title, post_path(post) %>
+
+    <%end %>
+  </div>
+</div>
+

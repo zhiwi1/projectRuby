@@ -1,6 +1,21 @@
-<div align = 'center'>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <div><a href="posts/new">задачи</a></div>
+<div class="blackground" >
+  <div class="blackgroundcontainer" >
+    <div class="blackgroundwrapper" >
+      <div class="text" >
+        <strong><%= current_user.email %></strong>, we recommend <br>that you view all tasks
+        or add new task
+      </div>
+      <div class="btns" >
+        <a class="task_btn" href="posts">all tasks</a>
+        <a class="task_btn" href="posts/new">task</a>
+
+        <div class="task_btn" ><%= link_to "PROFILE",person_path(:id => current_user.id) %></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="imagebackground" ><%= image_tag('girl.jpg', style: "height: 100%; width: 100%") %></div>
+
+<div class="maincontent" align = 'center'>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
 </div>
