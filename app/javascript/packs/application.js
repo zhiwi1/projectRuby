@@ -8,6 +8,7 @@ require("channels")
 import "bootstrap"
 import "../stylesheets/application"
 import "../select2/select2.min"
+
 var moment = require('moment')
 
 var jQuery = require('jquery')

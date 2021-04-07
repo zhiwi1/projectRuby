@@ -46,7 +46,7 @@
            </div>
            <div class="content">
              <label>Difficult</label>
-             <% post.hard %>
+             <%= post.hard %>
            </div>
            <div class="tags-count">
              <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
