@@ -1,6 +1,7 @@
 <div class="profile_container">
   <div class="logged" >
     <p> Logged in as <strong><%= @person.email %></strong>.</p>
+    <p><%= @person.count_of_solve %></p>
   </div>
   <div class="allTasks" >
     <% @person_posts.each do |post| %>

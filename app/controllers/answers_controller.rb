@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
     @user_id = current_user.id.dup
     @answer = @post.answers.build(answer_params.merge(post_id: @post_id,user_id: @user_id))
     if @answer.save
-    if (@answer.reply.strip.eql?(@post.answer1.strip) || @answer.reply.strip.eql?(@post.answer2.strip))
+    if (@answer.reply.strip.eql?(@post.answer1.strip) || @answer.reply.strip.eql?(@post.answer2.strip)) && !@post.answer1.strip.empty? && !@post.answer2.strip.empty?
       current_user.count_of_solve +=1
       current_user.save
       redirect_to "/posts"

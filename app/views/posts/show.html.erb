@@ -9,8 +9,11 @@
   <div class="container">
   <h1><%=@post.title%></h1>
   <p><%=@post.content%></p>
+    <p><%=@post.hard%></p>
   <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
-
+    <%= simple_form_for @post, url: post_path(@post) do |f| %>
+      <%= f.input :rates,:id=>"rateYo" %>
+    <% end %>
     </div>
   </section>
 <section class="section comments">
@@ -24,3 +27,9 @@
     </div>
   </div>
 </section>
+    <script>$(function () {
+
+        $("#rateYo").rateYo({
+            precision: 2,
+        });
+    });</script>
