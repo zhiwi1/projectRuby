@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @tag_ids.delete_if(&:blank?)
     @post = current_user.posts.build(post_params.merge(tag_ids: @tag_ids))
     if @post.save
-      redirect_to @post
+      redirect_to "/posts"
     else
       render :new
     end
