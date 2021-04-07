@@ -33,7 +33,11 @@
         <div class="card-content">
           <div class="media">
             <div class="media-content">
-              <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
+              <% if post.answers.exists?(:user_id => current_user.id,:post_id => post.id) %>
+                <p class="title is-4"> <%= link_to post.title,post_path(post) %></p>
+                <% else %>
+                <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
+                <% end %>
             </div>
           </div>
           <div class="content">

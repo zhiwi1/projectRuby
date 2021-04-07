@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   def index
     params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.all
   end
-
   def show
     @post = Post.find(params[:id])
   end
