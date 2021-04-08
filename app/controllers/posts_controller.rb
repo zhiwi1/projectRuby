@@ -2,6 +2,18 @@ class PostsController < ApplicationController
 
   def index
     params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.all
+    @users = User.all
+    @users.sort_by(&:count_of_solve)
+    @persons_in_top = []
+    if !@users[0].nil? && !@users[0].blank?
+      @persons_in_top << @users[0].email
+    end
+    if !@users[1].nil? && !@users[1].blank?
+      @persons_in_top << @users[1].email
+    end
+    if !@users[2].nil? && !@users[2].blank?
+      @persons_in_top << @users[2].email
+    end
   end
   def show
     @post = Post.find(params[:id])

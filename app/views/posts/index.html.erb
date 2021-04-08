@@ -12,8 +12,9 @@
    <div class="asidetop" >
      <div class="flexcolumn">
        <div class="bestinsolution">
-         <p>email:</p>
-         <p>number of solved tasks:</p>
+         <% @persons_in_top.each.reverse_each do |per| %>
+           <div><%= per %></div>
+         <% end %>
        </div>
        <div class="bestinsolution">
          <p>email:</p>
