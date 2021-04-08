@@ -11,15 +11,7 @@
   <p><%=@post.content%></p>
     <p><%=@post.hard%></p>
   <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
-    <% if @post.rates.nil? %>
-    <%= simple_form_for @post, url: post_path(@post) do |f| %>
-      <text>Rates</text>
-      <%= f.range_field :rates, :in => 1..5, :step => 1%>
-        <%= f.submit "Create", class: 'btn btn-lg btn-primary float-right' %>
-    <% end %>
-    <% else %>
-      <%= @post.rates %>
-    <% end %>
+
 
     </div>
   </section>

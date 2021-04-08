@@ -5,6 +5,23 @@
   <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
   <%= simple_form_for @answer, url: post_answers_path(@post) do |f| %>
     <%= f.input :reply %>
+    <%= f.range_field :rates, :in => 1..5, :step => 1,:id=>"slider1",:label=> "RatesForYou"%>
     <%= f.submit "Solve", class: 'btn btn-lg btn-primary float-right' %>
   <% end %>
 </div>
+<script>
+    $(document).on('turbolinks:load', function () {
+
+    });
+
+    const input = document.querySelector( 'input' );
+    input.addEventListener( 'input', event => {
+
+        slider1.style.setProperty( '--color', `rgba(${input.value},0,0,1)`);
+    })
+    $("#slider1").change(function () {
+        var newValue = $('#slider1').val();
+        $("#difficultText").html(newValue);
+    });
+
+</script>

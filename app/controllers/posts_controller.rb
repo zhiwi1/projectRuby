@@ -50,6 +50,6 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-  params.require(:post).permit(:title,:hard,:rates,:answer1,:answer2, :content, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
+  params.require(:post).permit(:title,:hard,:answer1,:answer2, :content, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
 end
 end
