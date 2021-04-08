@@ -3,10 +3,13 @@
     <p> Logged in as <strong><%= @person.email %></strong>.</p>
     <p><%= @person.count_of_solve %></p>
   </div>
+  <div>
+    <text>Рейтинг решалы :</text> <%= @rates_of_solve  %>
+    <text>Рейтинг составителя задач</text>
+  </div>
   <div class="allTasks" >
     <% @person_posts.each do |post| %>
       <%= link_to post.title, post_path(post) %>
-
     <%end %>
   </div>
 </div>

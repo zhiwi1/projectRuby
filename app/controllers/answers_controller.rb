@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
     if @answer.save
     if (@answer.reply.strip.eql?(@post.answer1.strip) || @answer.reply.strip.eql?(@post.answer2.strip)) && !@post.answer1.strip.empty? && !@post.answer2.strip.empty?
       current_user.count_of_solve +=1
+      current_user.avarage_of_solve += @post.hard.to_i
       current_user.save
       redirect_to "/posts"
     else
