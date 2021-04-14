@@ -17,8 +17,9 @@
          <% end %>
        </div>
        <div class="bestinsolution">
-         <p>email:</p>
-         <p>number of solved tasks:</p>
+         <%  @intop.each  do |per| %>
+           <div><%= per %></div>
+         <% end %>
        </div>
        <div class="bestinsolution">
          <p>email:</p>
@@ -51,6 +52,9 @@
            </div>
            <div class="tags-count">
              <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
+           </div>
+           <div class="comment-count">
+             <%= post.countforsolve%>
            </div>
            <div class="comment-count">
              <span class="tag is-rounded"><%= post.comments.count %> comments</span>

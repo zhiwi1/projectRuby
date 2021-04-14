@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_101025) do
+ActiveRecord::Schema.define(version: 2021_04_14_073313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_101025) do
     t.integer "post_id"
     t.integer "user_id"
     t.string "rates"
+    t.boolean "checkForSolve", default: true
   end
 
   create_table "articles", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_101025) do
     t.integer "user_id"
     t.string "answer1"
     t.string "answer2"
+    t.integer "countforsolve", default: 0
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_101025) do
     t.integer "count_of_solve", default: 0
     t.integer "avarage_of_solve", default: 0
     t.integer "author_rates", default: 0
+    t.integer "rates_of_solve", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

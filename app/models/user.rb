@@ -20,4 +20,12 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def solver_rate
+    count_of_solve * avarage_of_solve
+  end
+
+  def task_author_rate
+    author_rates * 2
+  end
 end

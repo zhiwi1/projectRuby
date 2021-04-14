@@ -2,18 +2,23 @@ class PostsController < ApplicationController
 
   def index
     params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.all
-    @users = User.all
-    @users.sort_by(&:count_of_solve)
-    @persons_in_top = []
-    if !@users[0].nil? && !@users[0].blank?
-      @persons_in_top << @users[0].email
+    @users = User.all.sort_by(&:solver_rate)
+
+    @persons_in_top = @users.map { |user| user.email.to_s }.compact.first(3)
+    # @user.map(user -> user.getEmail())
+    @users.compact
+    @pp = Post.all
+    @pp.each do |post|
+      @users.each do |user|
+        if Answer.exists?(post_id: post.id,user_id: user.id,checkForSolve: true)
+          post.update_attribute(:countforsolve,post.countforsolve +=1)
+          Answer.find_by(post_id: post.id,user_id: user.id,checkForSolve: true).update_attribute(:checkForSolve , false)
+        end
+      end
     end
-    if !@users[1].nil? && !@users[1].blank?
-      @persons_in_top << @users[1].email
-    end
-    if !@users[2].nil? && !@users[2].blank?
-      @persons_in_top << @users[2].email
-    end
+
+    @possst = Post.all.sort_by(&:countforsolve)
+    @intop = @possst.map { |p| p.title.to_s}.compact.reverse.first(3)
   end
   def show
     @post = Post.find(params[:id])

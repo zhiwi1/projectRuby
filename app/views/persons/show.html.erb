@@ -4,8 +4,8 @@
     <p><%= @person.count_of_solve %></p>
   </div>
   <div>
-    <text>Рейтинг решалы :</text> <%= @rates_of_solve  %>
-    <text>Рейтинг составителя задач :</text> <%= @author_rate %>
+    <text>Рейтинг решалы :</text> <%= @person.solver_rate  %>
+    <div><text>Рейтинг составителя задач :</text> <%= @person.task_author_rate %></div>
   </div>
   <div class="allTasks" >
     <% @person_posts.each do |post| %>
