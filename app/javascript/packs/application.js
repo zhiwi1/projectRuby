@@ -5,9 +5,11 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 //= require select2
+//= require jqcloud
 import "bootstrap"
 import "../stylesheets/application"
 import "../select2/select2.min"
+import "../jqcloud-1.0.4/jqcloud-1.0.4.min"
 
 var moment = require('moment')
 

@@ -22,8 +22,7 @@
          <% end %>
        </div>
        <div class="bestinsolution">
-         <p>email:</p>
-         <p>number of solved tasks:</p>
+         <div id="example" style="width: 400px; height: 400px;"></div>
        </div>
      </div>
 
@@ -64,4 +63,9 @@
      <% end %>
    </div>
  </div>
-
+ <script>
+     $(document).on('turbolinks:load', function () {
+         var word_array = <%= raw @tagtop.map { |word| {text: word, weight: 6} }.to_json %>
+         $("#example").jQCloud(word_array);
+     });
+ </script>

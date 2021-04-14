@@ -19,6 +19,20 @@ class PostsController < ApplicationController
 
     @possst = Post.all.sort_by(&:countforsolve)
     @intop = @possst.map { |p| p.title.to_s}.compact.reverse.first(3)
+    @tags = Tag.all
+    @taging = Tagging.all
+    @pp.each do |post|
+      @tags.each do |tag|
+        if Tagging.exists?(post_id: post.id,tag_id: tag.id,check: true)
+          tag.update_attribute(:count,tag.count +=1)
+          Tagging.find_by(post_id: post.id,tag_id: tag.id,check: true).update_attribute(:check, false)
+        end
+      end
+    end
+    @taggg = Tag.all.sort_by(&:count)
+
+    @tagtop = @taggg.map { |p| p.name.to_s}.compact.reverse.first(5)
+
   end
   def show
     @post = Post.find(params[:id])
