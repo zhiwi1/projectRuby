@@ -65,7 +65,13 @@
  </div>
  <script>
      $(document).on('turbolinks:load', function () {
-         var word_array = <%= raw @tagtop.map { |word| {text: word, weight: 6} }.to_json %>
-         $("#example").jQCloud(word_array);
+          var word_array = <%= raw @tagtop.map { |word| {text: word, weight: 6} }.to_json %>
+         var uniqueNames = [];
+         $.each(word_array, function(i, el){
+             if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+         });
+
+             $("#example").jQCloud(uniqueNames);
+
      });
  </script>

@@ -10,6 +10,8 @@ class PersonsController < ApplicationController
 
   def show
     @person = User.find(params[:id])
+    @answerfirst = Answer.first.user_id
+    @firstUser = User.first.id
     @person_posts = @person.posts
   end
 end

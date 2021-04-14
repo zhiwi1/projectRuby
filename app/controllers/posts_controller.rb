@@ -30,9 +30,7 @@ class PostsController < ApplicationController
       end
     end
     @taggg = Tag.all.sort_by(&:count)
-
     @tagtop = @taggg.map { |p| p.name.to_s}.compact.reverse.first(5)
-
   end
   def show
     @post = Post.find(params[:id])
