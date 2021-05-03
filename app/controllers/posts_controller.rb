@@ -5,7 +5,6 @@ class PostsController < ApplicationController
     @users = User.all.sort_by(&:solver_rate)
 
     @persons_in_top = @users.map { |user| user.email.to_s }.compact.first(3)
-    # @user.map(user -> user.getEmail())
     @users.compact
     @pp = Post.all
     @pp.each do |post|

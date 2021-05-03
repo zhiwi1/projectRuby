@@ -4,6 +4,10 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
   belongs_to :user
+  validates :hard, presence: true
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :tags ,presence: true
   def self.tagged_with(name)
     Tag.find_by!(name: name).posts
   end
