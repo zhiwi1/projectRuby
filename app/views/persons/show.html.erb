@@ -14,13 +14,13 @@
       <% end %>
   </div>
   <div>
-    <% if current_user.id == @answerfirst %>
+    <% if @person.id == @answerfirst %>
     <text>Герой системы</text>
       <%= image_tag("firstanswer.jpg", size: "50x50")  %>
     <% end %>
   </div>
   <div>
-    <% if current_user.id == @firstUser %>
+    <% if @person.id == @firstUser %>
       <text>Старожила</text>
       <%= image_tag("старожила.png", size: "50x50")  %>
     <% end %>
