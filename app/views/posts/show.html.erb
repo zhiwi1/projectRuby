@@ -5,6 +5,20 @@
                     method: :delete,
                     data: { confirm: "Are you sure?" } %></li>
   <% end %>
+<div>
+  <% if current_user.id != @post.user_id %>
+    <%= link_to "Message #{User.find_by(:id => @post.user_id).email}", rooms_path(sender_id: current_user.id, recipient_id: @post.user_id), method: 'post', class:"button is-link" %>
+    <% end %>
+  <% if current_user.id == @post.user_id  %>
+    <%= link_to "Conversations", rooms_path %>
+  <% end %>
+</div>
+<div>
+  <h1>Materials</h1>
+<% @post.files.each do |file| %>
+  <%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %>
+<% end %>
+</div>
 <section class="section task">
 
   <div class="container">

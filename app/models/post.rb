@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many_attached :files
   belongs_to :user
   validates :hard, presence: true
   validates :title, presence: true

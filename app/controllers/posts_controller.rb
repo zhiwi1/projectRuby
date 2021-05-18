@@ -45,9 +45,11 @@ class PostsController < ApplicationController
         @tag_ids << data.to_s
         next
       end
+
         data_name = data.dup
         data = Tag.create(:name => data_name)
         @tag_ids << data.id.to_s
+
     end
     @tag_ids.delete_if(&:blank?)
     @post = current_user.posts.build(post_params.merge(tag_ids: @tag_ids))
@@ -65,7 +67,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to @post
+      redirect_to "/posts"
     else
       render :edit
     end
@@ -78,6 +80,6 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-  params.require(:post).permit(:title,:hard,:answer1,:answer2, :content, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
+  params.require(:post).permit(:title,:hard,:answer1,:answer2, :content, :tag_list, :tag, { tag_ids: [] }, :tag_ids,files: [])
 end
 end

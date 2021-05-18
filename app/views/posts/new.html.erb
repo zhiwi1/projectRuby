@@ -2,8 +2,12 @@
 
   <h1 class = "text-center">New Task</h1>
   <%= simple_form_for @post, url: posts_path do |f| %>
-    <%= f.input :title %>
-    <%= f.input :content, :label =>""%>
+    <%= f.input :title ,label: "title"%>
+    <%= f.input :content, label: "content"%>
+    <div class="field">
+
+      <%= f.file_field :files, multiple: true %>
+    </div>
     <%= f.range_field :hard, :in => 1..10, :step => 1,:id=>"slider1"%>
     <text>Difficult</text>
     <text id="difficultText">6</text>

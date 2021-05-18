@@ -1,79 +1,82 @@
- <div class="usertools">
-   <div class="emptyplace" ></div>
-   <div class="profile">
-     <a href="" alt="" ><%= link_to "profile",person_path(:id => current_user.id) %></a>
-   </div>
-   <div class="logout" >
-     <a href="" alt="" ><%= link_to "logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></a>
-   </div>
-   <div class="allprofiles" >
-     <a href="/persons" alt="" >all profiles</a>
-   </div>
-   <div class="asidetop" >
-     <div class="flexcolumn">
-       <div class="bestinsolution">
-         <% @persons_in_top.each.reverse_each do |per| %>
-           <div><%= per %></div>
-         <% end %>
-       </div>
-       <div class="bestinsolution">
-         <%  @intop.each  do |per| %>
-           <div><%= per %></div>
-         <% end %>
-       </div>
-       <div class="bestinsolution">
-         <% if Post.exists?  %>
+<div class="usertools">
+  <div class="emptyplace" ></div>
+  <div class="profile">
+    <a href="" alt="" ><%= link_to "profile",person_path(:id => current_user.id) %></a>
+  </div>
+  <div class="logout" >
+    <a href="" alt="" ><%= link_to "logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></a>
+  </div>
+  <div>
+    <%= link_to "Chats", rooms_path %>
+  </div>
+  <div class="allprofiles" >
+    <a href="/persons" alt="" >all profiles</a>
+  </div>
+  <div class="asidetop" >
+    <div class="flexcolumn">
+      <div class="bestinsolution">
+        <% @persons_in_top.each.reverse_each do |per| %>
+          <div><%= per %></div>
+        <% end %>
+      </div>
+      <div class="bestinsolution">
+        <%  @intop.each  do |per| %>
+          <div><%= per %></div>
+        <% end %>
+      </div>
+      <div class="bestinsolution">
+        <% if Post.exists?  %>
          <div id="example" style="width: 400px; height: 400px;"></div>
-           <% end %>
-       </div>
-     </div>
+        <% end %>
+      </div>
+    </div>
 
-   </div>
- </div>
- <div class="s" style=" padding-bottom: 20px;">
-   <div class="container" >
-     <% @posts.each do |post| %>
-       <div class="card">
-         <div class="card-content">
-           <div class="media">
-             <div class="media-content">
-               <% if post.answers.exists?(:user_id => current_user.id,:post_id => post.id) %>
-                 <p class="title is-4"> <%= link_to post.title,post_path(post) %></p>
-               <% else %>
-                 <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
-               <% end %>
-             </div>
-           </div>
-           <div class="content">
-             <%= truncate(post.content, length: 50) %>
-           </div>
-           <div class="content">
-             <label>Difficult</label>
-             <%= post.hard %>
-           </div>
-           <div class="tags-count">
-             <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
-           </div>
-           <div class="comment-count">
-             <%= post.countforsolve%>
-           </div>
-           <div class="comment-count">
-             <span class="tag is-rounded"><%= post.comments.count %> comments</span>
-           </div>
-         </div>
-       </div>
-     <% end %>
-   </div>
- </div>
- <script>
-     $(document).on('turbolinks:load', function () {
-          var word_array = <%= raw @tagtop.map { |word| {text: word, weight: 6} }.to_json %>
-         var uniqueNames = [];
-         $.each(word_array, function(i, el){
-             if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-         });
+  </div>
+</div>
+<div class="s" style=" padding-bottom: 20px;">
+  <div class="container" >
+    <% @posts.each do |post| %>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <% if post.answers.exists?(:user_id => current_user.id,:post_id => post.id) %>
+                <p class="title is-4"> <%= link_to post.title,post_path(post) %></p>
+              <% else %>
+                <p class="title is-4"> <%= link_to post.title,new_post_answer_path(post) %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="content">
+            <%= truncate(post.content, length: 50) %>
+          </div>
+          <div class="content">
+            <label>Difficult</label>
+            <%= post.hard %>
+          </div>
+          <div class="tags-count">
+            <small>Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small>
+          </div>
+          <div class="comment-count">
+            <%= post.countforsolve%>
+          </div>
+          <div class="comment-count">
+            <span class="tag is-rounded"><%= post.comments.count %> comments</span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script>
+    $(document).on('turbolinks:load', function () {
+        var word_array = <%= raw @tagtop.map { |word| {text: word, weight: 6} }.to_json %>
+        var uniqueNames = [];
+        $.each(word_array, function(i, el){
+            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+        });
 
-             $("#example").jQCloud(uniqueNames);
+        $("#example").jQCloud(uniqueNames);
 
-     });
- </script>
+    });
+</script>

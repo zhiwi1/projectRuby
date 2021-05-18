@@ -36,7 +36,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'activerecord-session_store'
 gem 'omniauth-rails_csrf_protection'
-
+gem 'redis'
 gem 'popper_js', "~> 1.11.1"
 gem 'bootstrap', "4.0.0.alpha6"
 source 'https://rails-assets.org' do

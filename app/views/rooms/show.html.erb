@@ -1,0 +1,17 @@
+<% if current_user.id == @room.sender_id %>
+  <h1 class="title is-4">Chat with <%= User.find_by(:id =>  @room.recipient_id).email %></h1>
+  <% end %>
+<% if current_user.id == @room.recipient_id %>
+  <h1 class="title is-4">Chat with <%= User.find_by(:id =>  @room.sender_id).email %></h1>
+<% end %>
+<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
+<div id="messages">
+<% @room.messages.each do |message| %>
+  <%= render 'messages/message', message: message %>
+<% end %>
+</div>
+<div class="chat-box">
+  <%= render 'messages/form', message: Message.new,room: @room %>
+</div>
+<%= link_to 'Back', rooms_path %>

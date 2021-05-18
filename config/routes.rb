@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :rooms
   get 'persons/profile'
   root 'persons#profile'
   resources :posts

@@ -1,3 +1,4 @@
 <% @persons.each do |person| %>
   <div><%= link_to person.email,person_path(person) %></div>
 <% end %>
+  <div><%= link_to "All tasks", posts_path %></div>

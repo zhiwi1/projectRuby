@@ -1,4 +1,7 @@
 <div class="profile_container">
+  <div>
+    <%=link_to "Back" , "/persons" %>
+  </div>
   <div class="logged" >
     <p> Logged in as <strong><%= @person.email %></strong>.</p>
     <p><%= @person.count_of_solve %></p>
