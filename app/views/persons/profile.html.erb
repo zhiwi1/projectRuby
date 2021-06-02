@@ -1,21 +1,23 @@
-<div class="blackground" >
-  <div class="blackgroundcontainer" >
-    <div class="blackgroundwrapper" >
-      <div class="text" >
-        <strong><%= current_user.email %></strong>, we recommend <br>that you view all tasks
-        or add new task
+<div class="blackground">
+  <div class="blackgroundcontainer">
+    <div class="blackgroundwrapper">
+      <div class="text">
+        <strong><%= current_user.email %></strong><%=t 'profile.weRecommend' %><br><%=t 'profile.that' %>
       </div>
-      <div class="btns" >
-        <a class="task_btn" href="posts">all tasks</a>
-        <a class="task_btn" href="posts/new">task</a>
+      <div class="btns">
 
-        <div class="task_btn" ><%= link_to "PROFILE",person_path(:id => current_user.id) %></div>
+        <a class="task_btn" >
+          <%= link_to  t('profile.allTasks'),posts_path%> </a>
+        <a class="task_btn" >
+          <%= link_to t('profile.task'), new_post_path%></a>
+
+        <div class="task_btn"><%= link_to t('profile.profile'), person_path(:id => current_user.id) %></div>
       </div>
     </div>
   </div>
 </div>
-<div class="imagebackground" ><%= image_tag('girl.jpg', style: "height: 100%; width: 100%") %></div>
+<div class="imagebackground"><%= image_tag('girl.jpg', style: "height: 100%; width: 100%") %></div>
 
-<div class="maincontent" align = 'center'>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+<div class="maincontent" align='center'>
+  <%= link_to t('profile.logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
 </div>

@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All users</h1>
+<h1><%=t 'rooms.index.allUsers' %></h1>
 
 <table>
   <div>
     <% @users.each do |user| %>
       <% if user.id != current_user.id %>
         <div>
-        <%= link_to "Message #{user.email}", rooms_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
+        <%= link_to ("#{user.email}"), rooms_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
         </div>
       <% end %>
     <% end %>
   </div>
-  <h1>All Chats</h1>
+  <h1><%=t 'rooms.index.allChats'%></h1>
   <tbody>
     <% @rooms.each do |conversation| %>
     <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>

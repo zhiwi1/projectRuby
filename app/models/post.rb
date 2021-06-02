@@ -1,4 +1,9 @@
 class Post < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: [:title, :content,:hard,:comments,:tags]
+  # Добавим вызов метода, осуществляющего переиндексацию, после сохранения записи
+
+
   has_many :taggings , dependent: :delete_all
   has_many :tags, through: :taggings
   has_many :comments, dependent: :destroy
@@ -9,6 +14,13 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :tags ,presence: true
+  def self.text_search(query)
+    if query.present?
+      where("name ilike :q or content ilike :q",q: "%#{query}%")
+    else
+      default_scoped
+    end
+  end
   def self.tagged_with(name)
     Tag.find_by!(name: name).posts
   end
@@ -26,4 +38,8 @@ class Post < ApplicationRecord
       Tag.where(name: n.strip).first_or_create!
     end
   end
+  # Сделаем метод реиндексации приватным
+
+  # Опишем метод, который будет вызываться после каждого создания новой записи или обновления существующей
+
 end

@@ -24,9 +24,9 @@ class AnswersController < ApplicationController
       current_user.count_of_solve +=1
       current_user.avarage_of_solve += @post.hard.to_i
       current_user.save
-      redirect_to "/posts"
+      redirect_to posts_path
     else
-      redirect_to "/posts"
+      redirect_to posts_path
     end
     end
     end

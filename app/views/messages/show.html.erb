@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Content:</strong>
+  <strong><%=t "messages.show.content" %></strong>
   <%= @message.content %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong><%=t "messages.show.user" %></strong>
   <%= @message.user_id %>
 </p>
 
 <p>
-  <strong>Room:</strong>
+  <strong><%=t "messages.show.room" %></strong>
   <%= @message.room_id %>
 </p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<%= link_to t('messages.show.edit'), edit_message_path(@message) %> |
+<%= link_to t('messages.show.back'), messages_path %>

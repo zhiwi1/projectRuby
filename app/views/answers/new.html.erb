@@ -2,11 +2,11 @@
   <h1 class = "text-center">Solve Task</h1>
   <h1><%=@post.title%></h1>
   <p><%=@post.content%></p>
-  <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
+  <p><small><%=t 'posts.show.tags' %><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
   <%= simple_form_for @answer, url: post_answers_path(@post) do |f| %>
     <%= f.input :reply %>
     <%= f.range_field :rates, :in => 1..5, :step => 1,:id=>"slider1",:label=> "RatesForYou"%>
-    <%= f.submit "Solve", class: 'btn btn-lg btn-primary float-right' %>
+    <%= f.submit t('solve'), class: 'btn btn-lg btn-primary float-right' %>
   <% end %>
 </div>
 <script>

@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
   def index
+    @search_results = PgSearch.multisearch(params[:query])
     @messages = Message.all
   end
 

@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+=begin
+  include PgSearch::Model
+  multisearchable against: :email
+=end
+
+
   has_many :answers
   has_many :posts, dependent: :destroy # own
 
@@ -28,4 +34,5 @@ class User < ApplicationRecord
   def task_author_rate
     author_rates * 2
   end
+
 end

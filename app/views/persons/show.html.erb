@@ -1,30 +1,30 @@
 <div class="profile_container">
   <div>
-    <%=link_to "Back" , "/persons" %>
+    <%=link_to t('persons.show.back'),persons_path %>
   </div>
   <div class="logged" >
-    <p> Logged in as <strong><%= @person.email %></strong>.</p>
+    <p><%= t 'persons.show.logged' %> <strong><%= @person.email %></strong></p>
     <p><%= @person.count_of_solve %></p>
   </div>
   <div>
-    <text>Рейтинг решалы :</text> <%= @person.solver_rate  %>
-    <div><text>Рейтинг составителя задач :</text> <%= @person.task_author_rate %></div>
+    <text><%= t 'persons.show.rating' %></text> <%= @person.solver_rate  %>
+    <div><text><%=t 'persons.show.authorRating'%></text> <%= @person.task_author_rate %></div>
   </div>
   <div>
     <% if @person.count_of_solve >= 2 %>
-      <text>Решала 1 уровня</text>
+      <text><%= t 'persons.show.solver1' %></text>
     <%= image_tag("kubok.png", size: "50x50")  %>
       <% end %>
   </div>
   <div>
     <% if @person.id == @answerfirst %>
-    <text>Герой системы</text>
+    <text><%= t 'persons.show.hero' %></text>
       <%= image_tag("firstanswer.jpg", size: "50x50")  %>
     <% end %>
   </div>
   <div>
     <% if @person.id == @firstUser %>
-      <text>Старожила</text>
+      <text><%= t 'persons.show.old'%></text>
       <%= image_tag("старожила.png", size: "50x50")  %>
     <% end %>
   </div>

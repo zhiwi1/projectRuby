@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
 
   def index
+
+    @search_results = PgSearch.multisearch(params[:query])
+    @posts=Post.text_search(params[:query])
     params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.all
     @users = User.all.sort_by(&:solver_rate)
 
@@ -54,7 +57,7 @@ class PostsController < ApplicationController
     @tag_ids.delete_if(&:blank?)
     @post = current_user.posts.build(post_params.merge(tag_ids: @tag_ids))
     if @post.save
-      redirect_to "/posts"
+      redirect_to posts_path
     else
       render :new
     end

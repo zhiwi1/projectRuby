@@ -1,20 +1,20 @@
 
 <% if Post.exists?(user_id: current_user.id) %>
-    <li><%= link_to "Edit", edit_post_path(@post) %></li>
-    <li><%= link_to "Destroy", post_path(@post),
+    <li><%= link_to t("posts.show.edit"), edit_post_path(@post) %></li>
+    <li><%= link_to t("posts.show.destroy"), post_path(@post),
                     method: :delete,
-                    data: { confirm: "Are you sure?" } %></li>
+                    data: { confirm: t('posts.show.aus') } %></li>
   <% end %>
 <div>
   <% if current_user.id != @post.user_id %>
-    <%= link_to "Message #{User.find_by(:id => @post.user_id).email}", rooms_path(sender_id: current_user.id, recipient_id: @post.user_id), method: 'post', class:"button is-link" %>
+    <%= link_to  t("posts.show.message")+"#{User.find_by(:id => @post.user_id).email}", rooms_path(sender_id: current_user.id, recipient_id: @post.user_id), method: 'post', class:"button is-link" %>
     <% end %>
   <% if current_user.id == @post.user_id  %>
-    <%= link_to "Conversations", rooms_path %>
+    <%= link_to t('posts.show.conversations'), rooms_path %>
   <% end %>
 </div>
 <div>
-  <h1>Materials</h1>
+  <h1><%=t 'posts.show.materials' %></h1>
 <% @post.files.each do |file| %>
   <%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %>
 <% end %>
@@ -25,18 +25,17 @@
   <h1><%=@post.title%></h1>
   <p><%=@post.content%></p>
     <p><%=@post.hard%></p>
-  <p><small>Tags: <%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
-
+  <p><small><%=t 'posts.show.tags' %>><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small></p>
 
     </div>
   </section>
     <section class="section comments">
   <div class="container">
-    <h1 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Comments</h1>
+    <h1 class="subtitle is-5"><strong><%= @post.comments.count %></strong> <%=t '.comments' %></h1>
     <%= render @post.comments %>
     <div class="comment-form">
       <hr />
-      <h3 class="subtitle is-3">Leave a reply</h3>
+      <h3 class="subtitle is-3"><%=t 'leaveAReply'%></h3>
       <%= render 'comments/form' %>
     </div>
   </div>

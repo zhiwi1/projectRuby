@@ -1,17 +1,17 @@
 <div class = 'col-md-8 offset-2'>
 
-  <h1 class = "text-center">Edit Task</h1>
+  <h1 class = "text-center"><%=t "posts.edit.editTask" %></h1>
   <%= simple_form_for @post, url: post_path do |f| %>
     <%= f.input :title %>
     <%= f.input :content, :label =>""%>
     <%= f.range_field :hard, :in => 1..10, :step => 1,:id=>"slider1"%>
-    <text>Difficult</text>
+    <text><%=t "posts.edit.difficult" %></text>
     <text id="difficultText">6</text>
     <%= f.input :tag_ids, as: :select , collection: Tag.order(:name), label_method: :name, input_html: {multiple: true}%>
     <%= f.input :answer1 %>
     <%= f.input :answer2 %>
-    <a class="task_btn" href="../posts">all tasks</a>
-    <%= f.submit "Edit", class: 'btn btn-lg btn-primary float-right' %>
+    <a class="task_btn" href="../posts"><%=t "posts.edit.allTasks" %><</a>
+    <%= f.submit t ("posts.edit.edit"), class: 'btn btn-lg btn-primary float-right' %>
   <% end %>
 
 </div>

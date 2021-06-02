@@ -1,6 +1,6 @@
-<h1>Editing Message</h1>
+<h1><%= t 'messages.edit.editing' %></h1>
 
 <%= render 'form', message: @message %>
 
-<%= link_to 'Show', @message %> |
-<%= link_to 'Back', messages_path %>
+<%= link_to t("messages.edit.show"), @message %> |
+<%= link_to t("messages.edit.back"), messages_path %>
